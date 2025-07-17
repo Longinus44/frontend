@@ -42,6 +42,8 @@ export default function CoordinatorPage({ params }: Props) {
 	}
 
 	const handleSubmit = async (e: React.FormEvent) => {
+		const bookingUrl = process.env.NEXT_PUBLIC_CREATE_BOOKING;
+
 		e.preventDefault();
 
 		const { name, email, weddingdate, guestscount } = formData;
@@ -56,7 +58,7 @@ export default function CoordinatorPage({ params }: Props) {
 		}
 
 		try {
-			const res = await fetch("http://localhost:3000/api/bookings", {
+			const res = await fetch(bookingUrl as string, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
