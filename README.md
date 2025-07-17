@@ -1,36 +1,81 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
 
-First, run the development server:
+## Event Coordinators Directory App
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+A responsive **Next.js** application for showcasing and exploring event coordinators. Users can search for coordinators, view their profiles, check availability and pricing, and toggle between light and dark themes.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Real-time search by name or location
+- Light/Dark theme toggle
+- Optimized image rendering with `next/image`
+- Fully responsive UI using Tailwind CSS
+- Availability & pricing info per coordinator
+- Optimized for mobile and desktop views
+- Dynamic data fetching from a REST API
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## Overview
 
-To learn more about Next.js, take a look at the following resources:
+This React-based app lists event coordinators and allows users to:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Search coordinators
+- View their location, bio, and availability
+- See pricing information
+- Switch between dark and light themes
+- Book a coordinator 
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Setup Instructions
 
-## Deploy on Vercel
+### ⚙️ Prerequisites
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Node.js (v14 or later)
+- npm (v6 or later) or Yarn
+- Code editor (VS Code recommended)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 📥 Installation
+
+1. **Clone the repository**
+   git clone https://github.com/your-username/event-coordinators.git
+   cd WEDDINGCOORD
+
+2. # Install backend dependencies:
+   cd backend
+	- npm install 
+	# or 
+	yarn
+
+3. # Install frontend dependencies:
+	cd frontend
+	npm install
+	# or
+	yarn
+
+4. # Start the backend server first:
+	cd backend
+	npm run dev
+
+5. # Start the frontend server:
+	cd frontend
+	npm run dev
+
+
+### API Setup
+
+This application assumes that an API is running at `http://localhost:3000/api/coordinators` to fetch coordinator data. You will need to set up a separate API project to provide this data.
+
+## Assumptions and Limitations
+
+* This application assumes that the API endpoint `http://localhost:3000/api/coordinators` returns a JSON response with an array of coordinator objects, each containing the following properties:
+	+ `id`: unique identifier
+	+ `name`: coordinator name
+	+ `location`: coordinator location
+	+ `bio`: coordinator bio
+	+ `price`: coordinator price
+	+ `availability`: array of available dates
+	+ `profilephoto`: URL of the coordinator's profile photo
+
+	# License
+This project is licensed under the MIT License.
+
