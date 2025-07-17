@@ -31,9 +31,14 @@ export default function Home() {
         const data = await res.json();
         setCoordinators(data);
         setError(null);
-      } catch (err: any) {
-        console.error("Fetch error:", err.message);
-        setError(err.message);
+      } catch (err: unknown) {
+        if (err instanceof Error) {
+          console.error("Fetch error:", err.message);
+          setError(err.message)
+        } else {
+          console.error("Fetch error:", err);
+          setError("An error occurred while fetching coordinators")
+        }
       } finally {
         setLoading(false);
       }
