@@ -61,13 +61,10 @@ This React-based app lists event coordinators and allows users to:
 	npm run dev
 
 
-### API Setup
+This application fetches coordinator data from a live API hosted at:https://weddingcoord.onrender.com/api/coordinators/.
+returns a JSON response containing an array of coordinator objects.
+Each coordinator object is expected to include the following properties:
 
-This application assumes that an API is running at `http://localhost:3000/api/coordinators` to fetch coordinator data. You will need to set up a separate API project to provide this data.
-
-## Assumptions and Limitations
-
-* This application assumes that the API endpoint `http://localhost:3000/api/coordinators` returns a JSON response with an array of coordinator objects, each containing the following properties:
 	+ `id`: unique identifier
 	+ `name`: coordinator name
 	+ `location`: coordinator location
