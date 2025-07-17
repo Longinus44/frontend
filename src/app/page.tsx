@@ -12,27 +12,34 @@ export default function Home() {
   const [coordinators, setCoordinators] = useState<ICoordinator[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [darkMode, setDarkMode] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchCoordinators = async () => {
       const url = process.env.NEXT_PUBLIC_FETCH_COORDINATOR_URL;
+      try {
+        const res = await fetch(url as string, {
+          cache: "no-store",
+        });
 
-      const res = await fetch(url as string, {
-        cache: "no-store",
-      });
+        if (!res.ok) {
+          throw new Error("Failed to fetch coordinators");
+        }
+        console.log("API URL:", process.env.NEXT_PUBLIC_FETCH_COORDINATOR_URL);
 
-      if (!res.ok) {
-        throw new Error("Failed to fetch coordinators");
+        const data = await res.json();
+        setCoordinators(data);
+        setError(null);
+      } catch (err: any) {
+        console.error("Fetch error:", err.message);
+        setError(err.message);
+      } finally {
+        setLoading(false);
       }
-      console.log("API URL:", process.env.NEXT_PUBLIC_FETCH_COORDINATOR_URL);
-
-      const data = await res.json();
-      setCoordinators(data);
-    };
-
+    }
     fetchCoordinators();
   }, []);
-  console.log("API URgggggL:", process.env.NEXT_PUBLIC_FETCH_COORDINATOR_URL);
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", darkMode);
@@ -68,6 +75,14 @@ export default function Home() {
             </button>
           </div>
         </div>
+
+
+        {/* Loading state */}
+        {loading && <p>Loading coordinators...</p>}
+
+        {/* Error state */}
+        {error && <p className="text-red-500">Error: {error}</p>}
+
 
         {/* Coordinator Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
