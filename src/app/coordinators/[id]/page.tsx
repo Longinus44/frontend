@@ -24,7 +24,7 @@ export default function CoordinatorPage({ params }: Props) {
 		const fetchData = async () => {
 			const url = process.env.NEXT_PUBLIC_FETCH_COORDINATOR_URL;
 
-			const res = await fetch(`${url as string}${await id}`, {
+			const res = await fetch(`${url as string}${id}`, {
 				cache: "no-store",
 			});
 			if (!res.ok) return notFound();
@@ -32,7 +32,7 @@ export default function CoordinatorPage({ params }: Props) {
 			setData(coordinator);
 		};
 		fetchData();
-	}, []);
+	}, [id]);
 
 	if (!data) return <div>Loading...</div>;
 
